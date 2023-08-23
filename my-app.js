@@ -1,11 +1,10 @@
-const Student = {
-    name : 'Maaz Danish',
-    age : 24,
-    'Roll Number' : 23,
-    fun(){
-        console.log('Hey i am '+this.name+' a function of object');
+const arrayOne =  ['apple', 'oranges' , ' ', 'mango', ' ' , 'lemon'];
+const arrayTwo = arrayOne.map( (val) => {
+    ele = 'empty String'
+    if(val === ' '){
+        val = ele;
     }
-}
-
-Student.fun();
-console.log(Student);
+    // console.log(ele +" " + val);
+    return val;
+});
+console.log(arrayTwo);
