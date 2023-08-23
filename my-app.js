@@ -1,13 +1,22 @@
-const http = require('http');
-
-const hostname = '127.0.0.1';
-const port = 4000;
-const server = http.createServer( (req,res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end (`<h1>MAAZ DANISH</h1>`);
-})
-
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-  });
+async function printSequence() {
+	console.log('a');
+	console.log('b');
+	await function () {
+		return new Promise((res, rej) => {
+			setTimeout(() => {
+				console.log('c');
+				res();
+			}, 3000)
+		})
+	}()
+	await function () {
+		return new Promise((res, rej) => {
+			setTimeout(() => {
+				console.log('d');
+				res();
+			}, 0)
+		})
+	}()
+	console.log('e');
+}
+printSequence();
