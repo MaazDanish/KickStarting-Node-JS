@@ -1,8 +1,11 @@
-const productOfTwoNumbers = (p1,p2) => p1 * p2;
-console.log(productOfTwoNumbers(2,4));
+const Student = {
+    name : 'Maaz Danish',
+    age : 24,
+    'Roll Number' : 23,
+    fun(){
+        console.log('Hey i am '+this.name+' a function of object');
+    }
+}
 
-let p1 = 2;
-let p2 = 5;
-const productOfRandomNumbers = () => p1 * p2;
-console.log(productOfRandomNumbers());
-
+Student.fun();
+console.log(Student);
