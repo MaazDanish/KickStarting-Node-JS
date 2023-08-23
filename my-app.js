@@ -1,14 +1,31 @@
-// const obj1 = {'key1': 1, "key2": 2, "key3": 1000}
-// const { key1, key3} = { ...obj1}
-// console.log(key1, key3)
+// console.log('a');
+// console.log('b');
+// setTimeout(() => console.log('c'), 3000)
+// setTimeout(() => console.log('d'), 3000)
+// setTimeout(() => console.log('e'), 0)
+// setTimeout(() => console.log('f'), 0)
+// setTimeout(() => console.log('g'), 0)
+// console.log('h');
+// ---------------------------------------------------
+// console.log('a');
+// console.log('b');
+// setTimeout(() => console.log('c'), 3000)
+// setTimeout(() => console.log('d'), 0)
+// console.log('e');
+// ---------------------------------------------------
+const promise = new Promise ( (completed, rejected) => {
+    console.log('a');
+    console.log('b');
+    setTimeout(() => console.log('c'), 3000)
+    setTimeout(() => console.log('d'), 0)
+    console.log('e');
+}).then( res => console.log(res))
 
-// const arr1 = ['value1', 'value2']
-// const [ val1, val2 ] = arr1
-// console.log(val1)
-// console.log(val2)
-
-const obj2 = {'key4': 1, "key5": 2, "key6": 1000}
-let { key4, key6} = obj2
-key4 = 20;
-key6 = 123
-console.log(obj2.key4, obj2.key6)
+// promise.then( () => console.log('done'));
+async function pint(){
+    console.log('a');
+    console.log('b');
+    setTimeout(() => console.log('c'), 3000)
+    setTimeout(() => console.log('d'), 0)
+    console.log('e');
+}
