@@ -48,4 +48,4 @@ const requestHandler = (req, res) => {
 
 // Third way to link
 exports.handler = requestHandler;
-exports.someText = "HEY I M USING THIRD WAY TO LINK TO TWO JS FILE TOGETHER SO CODE LOOKS CLEAN AND NEAT";
+exports.someText = "HEY I M USING THIRD WAY TO LINK TO TWO JS FILE TOGETHER SO CODE LOOKS CLEAN AND NEAT - and also using the nodemon for restrating it againg while saving";
