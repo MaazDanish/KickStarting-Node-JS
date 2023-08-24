@@ -41,3 +41,7 @@ const requestHandler = (req, res) => {
 module.exports = requestHandler;
 
 //  Second way to link two js files
+module.exports = {
+	handler : requestHandler,
+	someTexts:'Hey I am linking the two js files together so that code looks clean and neat'
+}
