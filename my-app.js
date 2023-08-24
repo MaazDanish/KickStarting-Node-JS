@@ -1,29 +1,44 @@
 const http = require('http');
+const fs = require('fs');
+const { buffer } = require('stream/consumers');
 
 const server = http.createServer((req, res) => {
 	const url = req.url;
-	if(url === '/home'){
-		return res.end(`<h1> welcome home </h1>`);
-	}else if(url === '/about'){
-		return res.end(`<h1> welcome about us page </h1>`);
-	}else if(url === '/node'){
-		return res.end(`<h1> welcome Node js server </h1>`);
+	const method = req.method;
+	if (url === '/') {
+		fs.readFile('message.txt', (err, data) => {
+			if (err) {
+				res.writeHead(500, { 'Content-Type': 'text/plan' });
+				return res.end('Internal server error');
+			}
+			res.write('<html>');
+			res.write('<head> <title> first page </title> </head>');
+			res.write(`<body><p>${data}</p><form action="/message" method="POST"> <input type="text" name="message"><button type="submit">Send</button> </form></body>`);
+			res.write('</html>');
+			return res.end();  // used to cancel the response  or end the response server
+		})
 	}
-	res.setHeader('Content-Type', 'text/html');
-	// res.write('<html>');
-	// res.write('<head> <title> first page </title> </head>');
-	// res.write('<body><h1> THIS IS MAAZ DANISH KA FIRST RESPONSE SERVER FROM NODE JS SERVER</h1></body>');
-	// res.write('</html>');
-	res.end(`
-	<html>
-	<head> <title> first page </title> </head>
-	<body><h1> THIS IS MAAZ DANISH KA FIRST RESPONSE SERVER FROM NODE JS SERVER</h1></body>
-	</html>');
-	`);
+	if (url === '/message' && method === 'POST') {
+		const body = [];
+		req.on('data', (chunk) => {
+			console.log(chunk);
+			body.push(chunk);
+		})
+		return req.on('end', () => {
+			const parsedBody = Buffer.concat(body).toString();  // will catch data from chunk which is going on
+			const message = parsedBody.split('=')[1];  // will store data in it 
+			fs.writeFile('message.txt', message, err => {
+				res.statusCode = 302;
+				res.setHeader('Location', '/');
+				return res.end();
+			});  // will sent data to new file to store 
+		});
+
+
+	}
+
 });
 
-const port = 4000;
-const hostName =  '127.0.0.1';
-server.listen(port,hostName, () => {
-	console.log(`Server running at http://${hostName}:${port}/`);
-});
+const port = 4002;
+// const hostName = '127.0.0.1';
+server.listen(port);
