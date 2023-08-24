@@ -38,10 +38,14 @@ const requestHandler = (req, res) => {
 //  how to connect to js files together - there three way 
 
 // First Way to link to files
-module.exports = requestHandler;
+// module.exports = requestHandler;
 
 //  Second way to link two js files
-module.exports = {
-	handler : requestHandler,
-	someTexts:'Hey I am linking the two js files together so that code looks clean and neat'
-}
+// module.exports = {
+// 	handler : requestHandler,
+// 	someTexts:'Hey I am linking the two js files together so that code looks clean and neat'
+// }
+
+// Third way to link
+exports.handler = requestHandler;
+exports.someText = "HEY I M USING THIRD WAY TO LINK TO TWO JS FILE TOGETHER SO CODE LOOKS CLEAN AND NEAT";
