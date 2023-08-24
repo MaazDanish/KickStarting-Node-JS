@@ -2,12 +2,13 @@ const http = require('http');
 
 const server = http.createServer((req, res) => {
 	const url = req.url;
-	if(url === '/home'){
-		return res.end(`<h1> welcome home </h1>`);
-	}else if(url === '/about'){
-		return res.end(`<h1> welcome about us page </h1>`);
-	}else if(url === '/node'){
-		return res.end(`<h1> welcome Node js server </h1>`);
+	if(url === '/'){
+		return res.end(`
+	<html>
+	<head> <title> Enter Message </title> </head>
+	<body><form action="message" method="POST"> <input type="text" name="message"><button type="submit">Send</button> </form></body>
+	</html>');
+	`);
 	}
 	res.setHeader('Content-Type', 'text/html');
 	// res.write('<html>');
